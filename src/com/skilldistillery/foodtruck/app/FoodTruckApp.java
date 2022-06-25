@@ -71,15 +71,13 @@ public class FoodTruckApp {
 			case 3:
 				double topRating = 0;
 				int count = 0;
-
 				for (int i = 0; i < fleetOfFoodTrucks.length; i++) {
 					if (fleetOfFoodTrucks[i] == null) {
 						break;
 					}
-//					topRating = truckRating;
-					if (truckRating < fleetOfFoodTrucks[i].getTruckRating()) {
-						topRating += fleetOfFoodTrucks[i].getTruckRating();
-						count++;
+					if (topRating < fleetOfFoodTrucks[i].getTruckRating()) {
+						topRating = fleetOfFoodTrucks[i].getTruckRating();
+						count += i;
 					}
 				}
 				System.out.println(
