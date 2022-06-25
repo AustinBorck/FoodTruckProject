@@ -18,7 +18,7 @@ public class FoodTruckApp {
 		Scanner scanner = new Scanner(System.in);
 		String truckName = "";
 		String truckFood;
-		double truckRating;
+		double truckRating = 0;
 		boolean keepGoing = true;
 		int choice;
 
@@ -27,14 +27,13 @@ public class FoodTruckApp {
 			truckName = scanner.nextLine();
 			if (truckName.equals("quit")) {
 				break;
-			}
-			else {
-			System.out.println("Enter the food type: ");
-			truckFood = scanner.nextLine();
-			System.out.println("Enter the trucks rating 0.0 to 5.0: ");
-			truckRating = scanner.nextDouble();
-			scanner.nextLine();
-			fleetOfFoodTrucks[i] = new FoodTruck(truckName, truckFood, truckRating);
+			} else {
+				System.out.println("Enter the food type: ");
+				truckFood = scanner.nextLine();
+				System.out.println("Enter the trucks rating 0.0 to 5.0: ");
+				truckRating = scanner.nextDouble();
+				scanner.nextLine();
+				fleetOfFoodTrucks[i] = new FoodTruck(truckName, truckFood, truckRating);
 			}
 		}
 		while (keepGoing) {
@@ -49,18 +48,42 @@ public class FoodTruckApp {
 			switch (choice) {
 			case 1:
 				for (int i = 0; i < fleetOfFoodTrucks.length; i++) {
-					if(fleetOfFoodTrucks[i] == null) {break;}
+					if (fleetOfFoodTrucks[i] == null) {
+						break;
+					}
 					System.out.println(fleetOfFoodTrucks[i].toString());
 				}
 				break;
 			case 2:
+				double average = 0;
+				int counter = 0;
 				for (int i = 0; i < fleetOfFoodTrucks.length; i++) {
-					if(fleetOfFoodTrucks[i] == null) {break;}
-					
+					if (fleetOfFoodTrucks[i] == null) {
+						break;
+					}
+
+					average += fleetOfFoodTrucks[i].getTruckRating();
+					counter++;
 				}
+				System.out.println("The average is " + average / counter);
 
 				break;
 			case 3:
+				double topRating = 0;
+				int count = 0;
+
+				for (int i = 0; i < fleetOfFoodTrucks.length; i++) {
+					if (fleetOfFoodTrucks[i] == null) {
+						break;
+					}
+//					topRating = truckRating;
+					if (truckRating < fleetOfFoodTrucks[i].getTruckRating()) {
+						topRating += fleetOfFoodTrucks[i].getTruckRating();
+						count++;
+					}
+				}
+				System.out.println(
+						"The top rating truck is: " + fleetOfFoodTrucks[count].getTruckName() + " " + topRating);
 
 				break;
 			case 4:
